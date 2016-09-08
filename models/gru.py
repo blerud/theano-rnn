@@ -2,7 +2,7 @@ import theano
 from theano import tensor as T
 import numpy as np
 
-import util
+import model_util as util
 
 class gru():
     def __init__(self, in_size, rnn_size, out_size, layers,
