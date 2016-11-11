@@ -2,7 +2,7 @@ import theano
 from theano import tensor as T
 import numpy as np
 
-import model_util as util
+from models import model_util as util
 
 class lstm():
     def __init__(self, in_size, rnn_size, out_size, layers, dropout=0,
@@ -83,7 +83,7 @@ class lstm():
 
         l1 = T.nnet.relu(T.dot(X, self.w_i))
         layers = [(l1, 0)]
-        for l in xrange(self.layers):
+        for l in range(self.layers):
             layers.append(self.lstm_layer(l, layers[-1][0],
                                           self.y_tm1[l],
                                           self.c_tm1[l]))

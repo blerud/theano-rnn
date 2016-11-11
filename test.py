@@ -19,14 +19,14 @@ args = parser.parse_args()
 rnn_test = util.load_model(args.load)
 char_to_ix = rnn_test.char_to_ix
 ix_to_char = rnn_test.ix_to_char
-chars = char_to_ix.keys()
+chars = list(char_to_ix.keys())
 
 seq_test = args.seed
 if seq_test == '':
     seq_test = random.choice(chars)
-for n in xrange(args.test_length):
+for n in range(args.test_length):
     seq_test_oh = util.onehot(seq_test, char_to_ix)
     prediction = rnn_test.predict(seq_test_oh)
     seq_test += ix_to_char[prediction[-1]]
-print seq_test
+print(seq_test)
 

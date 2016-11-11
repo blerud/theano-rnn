@@ -62,7 +62,7 @@ elif model_type == 'gru':
     rnn = gru.gru(in_size, rnn_size, out_size, rnn_layers, dropout=dropout,
                   adadelta_params=adadelta_params, alpha=alpha)
 
-for e in xrange(epochs):
+for e in range(epochs):
     p = 0
     costs = []
     while p+seq_length+1 < len(data):
@@ -75,13 +75,13 @@ for e in xrange(epochs):
         cost = rnn.train(seq_x_oh, seq_y_oh)
         costs.append(cost)
         p += seq_length
-    print 'cost: ', np.mean(costs)
+    print('epoch', e, cost: ', np.mean(costs))
     util.save_model(model_save_file, rnn, char_to_ix, ix_to_char)
     rnn_test = util.load_model(model_save_file, is_train=0)
     seq_test = random.choice(chars)
-    for n in xrange(args.test_length):
+    for n in range(args.test_length):
         seq_test_oh = util.onehot(seq_test, char_to_ix)
         prediction = rnn_test.predict(seq_test_oh)
         seq_test += ix_to_char[prediction[-1]]
-    print e, seq_test
+    print(e, seq_test)
 

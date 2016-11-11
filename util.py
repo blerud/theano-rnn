@@ -29,7 +29,7 @@ def load_model(f, model='', is_train=1):
     try:
         ps = pickle.load(open(f, 'rb'))
     except:
-        print 'file not found'
+        print('file not found')
         sys.exit(1)
     if model == '' and ps['type'] == 'lstm':
         model = lstm.lstm(ps['in_size'], ps['rnn_size'], ps['out_size'],
